@@ -388,12 +388,4 @@ MIT
 
 ---
 
-## Contact
-
-**Jose Rodriguez** — Federal Cybersecurity Professional | GRC Engineering | DoD/Navy Background
-
-- LinkedIn: [linkedin.com/in/jarodriguez](https://linkedin.com/in/jarodriguez)
-- GitHub: [github.com/jarodriguez1836](https://github.com/jarodriguez1836)
-- Email: jarodriguez1836@gmail.com
-
 ClassGuard demonstrates practical GRC engineering on AWS: classification automation, metadata enforcement, and audit compliance.
