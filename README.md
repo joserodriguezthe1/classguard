@@ -212,6 +212,23 @@ Complete build history from rules engine to production infrastructure:
 
 ---
 
+## Security Scanning
+
+This project includes automated security scanning via GitHub Actions:
+
+- **Bandit** (Python SAST): Scans Python code for security issues
+- **Checkov** (IaC scanning): Scans Terraform for security best practices
+
+Results are available in the **Actions** tab of the repository.
+
+**Known dev environment findings:**
+Some Checkov checks flag best-practice recommendations (VPC isolation, code-signing, DLQ, PITR backups) that are optional for development environments. These are documented in `.checkov.yaml` and represent acceptable trade-offs for a learning/portfolio project.
+
+For production deployment, review and implement these recommendations as needed for your threat model.
+
+---
+
+## Classification Tiers
 ## Configuration
 
 Set in `terraform.tfvars` or Lambda environment:
