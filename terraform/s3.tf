@@ -24,6 +24,7 @@ resource "aws_kms_alias" "s3" {
 # ---- Ingest Bucket ----
 resource "aws_s3_bucket" "ingest" {
   bucket = var.ingest_bucket_name
+  force_destroy  = true
 
   tags = {
     Name = "${local.common_name}-ingest"
@@ -61,6 +62,7 @@ resource "aws_s3_bucket_public_access_block" "ingest" {
 # ---- Classified Bucket ----
 resource "aws_s3_bucket" "classified" {
   bucket = var.classified_bucket_name
+  force_destroy  = true
 
   tags = {
     Name = "${local.common_name}-classified"
@@ -98,6 +100,7 @@ resource "aws_s3_bucket_public_access_block" "classified" {
 # ---- Quarantine Bucket ----
 resource "aws_s3_bucket" "quarantine" {
   bucket = var.quarantine_bucket_name
+  force_destroy  = true
 
   tags = {
     Name = "${local.common_name}-quarantine"
