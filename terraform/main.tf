@@ -25,7 +25,6 @@ provider "aws" {
       var.tags,
       {
         Environment = var.environment
-        CreatedAt   = timestamp()
       }
     )
   }

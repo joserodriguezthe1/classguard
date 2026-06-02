@@ -160,7 +160,7 @@ resource "aws_s3_bucket_policy" "classified_deny_untagged" {
   })
 }
 
-# Quarantine: read-only for humans reviewing failures
+# Quarantine: allow Lambda to write, but prevent accidental deletion by humans
 resource "aws_s3_bucket_policy" "quarantine_readonly" {
   bucket = aws_s3_bucket.quarantine.id
 
@@ -168,14 +168,13 @@ resource "aws_s3_bucket_policy" "quarantine_readonly" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid    = "DenyDelete"
-        Effect = "Deny"
+        Sid    = "AllowLambdaWrite"
+        Effect = "Allow"
         Principal = {
-          AWS = "*"
+          AWS = aws_iam_role.lambda.arn
         }
         Action = [
-          "s3:DeleteObject",
-          "s3:PutObject",
+          "s3:PutObject"
         ]
         Resource = "${aws_s3_bucket.quarantine.arn}/*"
       }

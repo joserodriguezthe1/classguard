@@ -76,6 +76,6 @@ variable "tags" {
   default = {
     Project  = "ClassGuard"
     Managed  = "Terraform"
-    Purpose  = "Data Classification & Labeling"
+    Purpose  = "Data Classification and Labeling"
   }
 }
