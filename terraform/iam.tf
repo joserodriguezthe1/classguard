@@ -151,3 +151,21 @@ resource "aws_iam_role_policy" "lambda_kms" {
     ]
   })
 }
+
+# Bedrock policy: invoke foundation models for AI-augmented classification
+resource "aws_iam_role_policy" "lambda_bedrock" {
+  name   = "${local.common_name}-lambda-bedrock"
+  role   = aws_iam_role.lambda.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "bedrock:InvokeModel"
+        ]
+        Resource = "arn:aws:bedrock:${var.aws_region}::foundation-model/*"
+      }
+    ]
+  })
+}
