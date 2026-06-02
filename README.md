@@ -228,7 +228,6 @@ For production deployment, review and implement these recommendations as needed 
 
 ---
 
-## Classification Tiers
 ## Configuration
 
 Set in `terraform.tfvars` or Lambda environment:
