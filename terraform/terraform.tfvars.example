@@ -1,0 +1,26 @@
+# Customize these bucket names to be globally unique
+# AWS S3 bucket names must be unique across ALL AWS accounts globally
+# Use a pattern like: classguard-ingest-YOUR-AWS-ACCOUNT-ID or classguard-ingest-yourname-12345
+
+ingest_bucket_name      = "classguard-ingest-josea-20250602"
+classified_bucket_name  = "classguard-classified-josea-20250602"
+quarantine_bucket_name  = "classguard-quarantine-josea-20250602"
+
+# AWS region
+aws_region = "us-east-1"
+
+# Environment label
+environment = "dev"
+
+# Email for alerts when classification fails (optional, leave empty to skip SNS)
+alert_email = "your-email@example.com"
+
+# Bedrock AI classification (false = rules-only for now)
+bedrock_enabled = false
+bedrock_model_id = ""  # Set this when you enable Bedrock (e.g., "us.anthropic.claude-opus-4-20250805")
+
+# AI confidence threshold for auto-upgrades
+ai_confidence_threshold = 0.6
+
+# Maximum file size to process (1 MB default)
+max_object_size_bytes = 1048576
