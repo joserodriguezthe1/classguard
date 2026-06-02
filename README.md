@@ -48,26 +48,26 @@ File Uploaded to Ingest Bucket
 
 ## Key Features
 
-✅ **Deterministic Rules Engine**
+**Deterministic Rules Engine**
 - Patterns: SSN (with checksum), credit cards (Luhn validation), emails, AWS keys, private keys, secrets
 - CUI markers: FOUO, NOFORN, "CONTROLLED UNCLASSIFIED INFORMATION", etc.
 - FIPS-199 impact levels: LOW/MODERATE/HIGH → classification tiers
 - **Never stores matched values** — only counts and types for compliance
 
-✅ **AI Augmentation (Optional)**
+**AI Augmentation (Optional)**
 - AWS Bedrock Converse API integration
 - Raises classification when AI has high confidence
 - Holds floor when rules already classified higher (never downgrades)
 - Configurable confidence threshold
 - Audit rationale included
 
-✅ **Enforcement & Audit**
+**Enforcement & Audit**
 - S3 object tags: `classification=INTERNAL`, `review=False`, etc.
 - DynamoDB ledger: object key, timestamp, classification, decided_by, rationale
 - SNS alerts on classification failure or quarantine
 - Bucket policies prevent unlabeled data from leaving ingest
 
-✅ **Production-Ready**
+**Production-Ready**
 - KMS encryption at rest (S3, DynamoDB)
 - EventBridge for event-driven architecture
 - 60-second Lambda timeout, 512 MB memory
@@ -340,21 +340,21 @@ terraform apply
 
 ## Security Considerations
 
-✅ **Data Protection**
+**Data Protection**
 - KMS CMK encryption for all data at rest
 - Bucket versioning enabled
 - Object tagging immutable (tagged via Lambda copy)
 
-✅ **IAM Principle of Least Privilege**
+**IAM Principle of Least Privilege**
 - Lambda role: read ingest, write classified/quarantine, audit to DynamoDB, KMS operations only
 - EventBridge role: invoke Lambda only
 
-✅ **Audit & Monitoring**
+**Audit & Monitoring**
 - All events logged to DynamoDB
 - SNS alerts on failures (email)
 - CloudWatch logs retention: 7 days
 
-⚠️ **Considerations for Production**
+**Considerations for Production**
 - Enable MFA Delete on audit table
 - Use VPC endpoints for S3/DynamoDB to isolate traffic
 - Implement cross-account audit bucket for immutability
@@ -387,13 +387,5 @@ MIT
 - [FedRAMP Security Control Mapping](https://www.fedramp.gov/assets/resources/documents/FedRAMP_OSCAL_Profile.json)
 
 ---
-
-## Contact
-
-**Jose Rodriguez** — Federal Cybersecurity Professional | GRC Engineering | DoD/Navy Background
-
-- LinkedIn: [linkedin.com/in/jarodriguez](https://linkedin.com/in/jarodriguez)
-- GitHub: [github.com/jarodriguez1836](https://github.com/jarodriguez1836)
-- Email: jarodriguez1836@gmail.com
 
 ClassGuard demonstrates practical GRC engineering on AWS: classification automation, metadata enforcement, and audit compliance.
