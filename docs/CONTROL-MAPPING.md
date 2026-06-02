@@ -70,10 +70,10 @@ Classified Bucket
 
 **Security Properties:**
 
-✅ **Binding Strength:** Tags are part of object metadata; can only be modified by Lambda role (least privilege)  
-✅ **Persistence:** Tags persist across bucket replication, lifecycle rules, and access logs  
-✅ **Access Control:** IAM policy can require `s3:GetObjectTagging` before `s3:GetObject`  
-✅ **Audit Trail:** DynamoDB records why each tag was assigned (rules vs. AI)
+**Binding Strength:** Tags are part of object metadata; can only be modified by Lambda role (least privilege)  
+**Persistence:** Tags persist across bucket replication, lifecycle rules, and access logs  
+**Access Control:** IAM policy can require `s3:GetObjectTagging` before `s3:GetObject`  
+**Audit Trail:** DynamoDB records why each tag was assigned (rules vs. AI)
 
 ---
 
@@ -257,10 +257,10 @@ Decision:
 **Why This Matters for RA-2:**
 
 NIST RA-2 requires *systematic categorization* before control selection. ClassGuard:
-- ✅ Automates categorization at point of creation
-- ✅ Applies consistent logic (rules + optional AI)
-- ✅ Documents every categorization decision (DynamoDB audit)
-- ✅ Enables downstream control mapping (AC-16, MP-3, AU-2)
+- Automates categorization at point of creation
+- Applies consistent logic (rules + optional AI)
+- Documents every categorization decision (DynamoDB audit)
+- Enables downstream control mapping (AC-16, MP-3, AU-2)
 
 ---
 
@@ -333,11 +333,11 @@ if object_tags['classification'] in ['RESTRICTED', 'CONFIDENTIAL']:
 
 **Why Logical Marking?**
 
-✅ **Automation:** Applied automatically at creation; no manual steps  
-✅ **Persistence:** Tags follow object across buckets, replicas, and archives  
-✅ **Queryable:** Downstream tools can filter/route based on tags  
-✅ **Audit Trail:** All marking decisions logged with rationale  
-✅ **Scalability:** Works for 1 object or 1 million objects
+**Automation:** Applied automatically at creation; no manual steps  
+**Persistence:** Tags follow object across buckets, replicas, and archives  
+**Queryable:** Downstream tools can filter/route based on tags  
+**Audit Trail:** All marking decisions logged with rationale  
+**Scalability:** Works for 1 object or 1 million objects
 
 ---
 
@@ -391,22 +391,22 @@ Every file upload triggers a complete audit record:
 
 **What's Captured:**
 
-✅ **Event Identification**
+**Event Identification**
 - Object key, timestamp, request ID (AWS Lambda)
 - Bucket and file size
 - Complete classification decision path
 
-✅ **Classification Logic**
+**Classification Logic**
 - Rules-based tier and matched patterns (counts, no PII)
 - AI tier, confidence, and rationale (if enabled)
 - "decided_by" field: rules vs. AI, confidence thresholds
 
-✅ **Action Taken**
+**Action Taken**
 - Where object was routed: classified, quarantine, error
 - Success or failure status
 - Error messages (without exposing sensitive data)
 
-✅ **Pattern Detection (Safely)**
+**Pattern Detection (Safely)**
 - Counts of matches (e.g., "email: 1", "credit_card: 0")
 - **Never stores matched values** (no PII re-leakage)
 
@@ -644,9 +644,9 @@ s3_client.copy_object(
 
 AWS KMS uses FIPS 140-2 validated hardware security modules (HSMs) for key storage. ClassGuard inherits this compliance:
 
-✅ **FIPS 140-2 Level 3:** KMS operates in AWS's FIPS 140-2 L3-validated infrastructure  
-✅ **Key Derivation:** Each object encrypted with a unique data key (derived from CMK)  
-✅ **No Master Key Export:** CMK never leaves AWS KMS; impossible to export for offline use (secure by design)
+**FIPS 140-2 Level 3:** KMS operates in AWS's FIPS 140-2 L3-validated infrastructure  
+**Key Derivation:** Each object encrypted with a unique data key (derived from CMK)  
+**No Master Key Export:** CMK never leaves AWS KMS; impossible to export for offline use (secure by design)
 
 ---
 
